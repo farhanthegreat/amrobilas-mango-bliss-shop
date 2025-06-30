@@ -73,7 +73,11 @@ const ProductCard: React.FC<ProductCardProps> = ({
             isHovered ? 'opacity-100' : 'opacity-0'
           }`}>
             <div className="absolute inset-0 flex items-center justify-center">
-              <div className="animate-bounce text-white text-4xl">🥭</div>
+              <img 
+                src="https://i.postimg.cc/Y9H9hPk1/himsagor.jpg" 
+                alt="Himsagar Mango" 
+                className="w-16 h-16 object-cover rounded-full animate-bounce shadow-lg"
+              />
             </div>
           </div>
         </div>
