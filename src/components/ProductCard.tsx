@@ -42,12 +42,12 @@ const ProductCard: React.FC<ProductCardProps> = ({
 
   return (
     <Card 
-      className="group overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 bg-white/80 backdrop-blur-sm border-0 shadow-lg"
+      className="group overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 bg-white/90 backdrop-blur-sm border-0 shadow-lg hover:shadow-green-200/50"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
       <CardHeader className="p-0 relative overflow-hidden">
-        <div className="aspect-square bg-gradient-to-br from-yellow-100 to-orange-100 relative">
+        <div className="aspect-square bg-gradient-to-br from-green-100 via-yellow-100 to-orange-100 relative">
           <img 
             src={image} 
             alt={name}
@@ -56,27 +56,29 @@ const ProductCard: React.FC<ProductCardProps> = ({
           
           {/* Discount Badge */}
           {originalPrice && (
-            <div className="absolute top-4 left-4 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
+            <div className="absolute top-4 left-4 bg-gradient-to-r from-orange-500 to-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold shadow-lg">
               {Math.round(((originalPrice - price) / originalPrice) * 100)}% OFF
             </div>
           )}
           
           {/* Stock Status */}
-          <div className={`absolute top-4 right-4 px-3 py-1 rounded-full text-sm font-semibold ${
-            inStock ? 'bg-green-500 text-white' : 'bg-red-500 text-white'
+          <div className={`absolute top-4 right-4 px-3 py-1 rounded-full text-sm font-semibold shadow-lg ${
+            inStock 
+              ? 'bg-gradient-to-r from-green-500 to-green-600 text-white' 
+              : 'bg-gradient-to-r from-red-500 to-red-600 text-white'
           }`}>
             {inStock ? 'In Stock' : 'Out of Stock'}
           </div>
 
           {/* Animated Overlay */}
-          <div className={`absolute inset-0 bg-black/20 transition-opacity duration-300 ${
+          <div className={`absolute inset-0 bg-gradient-to-br from-green-500/20 via-transparent to-orange-500/20 transition-opacity duration-300 ${
             isHovered ? 'opacity-100' : 'opacity-0'
           }`}>
             <div className="absolute inset-0 flex items-center justify-center">
               <img 
                 src="https://i.postimg.cc/Y9H9hPk1/himsagor.jpg" 
                 alt="Himsagar Mango" 
-                className="w-16 h-16 object-cover rounded-full animate-bounce shadow-lg"
+                className="w-16 h-16 object-cover rounded-full animate-bounce shadow-lg border-2 border-white"
               />
             </div>
           </div>
@@ -85,12 +87,12 @@ const ProductCard: React.FC<ProductCardProps> = ({
 
       <CardContent className="p-6">
         <div className="mb-2">
-          <span className="text-sm text-green-600 font-medium bg-green-50 px-2 py-1 rounded-full">
+          <span className="text-sm text-green-700 font-medium bg-gradient-to-r from-green-100 to-green-200 px-3 py-1 rounded-full border border-green-300">
             {variety}
           </span>
         </div>
         
-        <CardTitle className="text-xl font-bold text-gray-800 mb-2 group-hover:text-yellow-600 transition-colors">
+        <CardTitle className="text-xl font-bold text-gray-800 mb-2 group-hover:text-orange-600 transition-colors">
           {name}
         </CardTitle>
         
@@ -107,7 +109,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
                 size={16}
                 className={`${
                   i < Math.floor(rating) 
-                    ? 'text-yellow-400 fill-current' 
+                    ? 'text-orange-400 fill-current' 
                     : 'text-gray-300'
                 }`}
               />
@@ -121,7 +123,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
         {/* Price */}
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-2">
-            <span className="text-2xl font-bold text-gray-800">
+            <span className="text-2xl font-bold bg-gradient-to-r from-green-600 to-orange-600 bg-clip-text text-transparent">
               ৳{price}
             </span>
             {originalPrice && (
@@ -138,9 +140,9 @@ const ProductCard: React.FC<ProductCardProps> = ({
         <Button
           onClick={handleAddToCart}
           disabled={!inStock || isAdding}
-          className={`w-full font-semibold py-3 rounded-full transition-all duration-300 ${
+          className={`w-full font-semibold py-3 rounded-full transition-all duration-300 border-0 ${
             inStock 
-              ? 'bg-yellow-500 hover:bg-yellow-600 text-white hover:shadow-lg transform hover:scale-105' 
+              ? 'bg-gradient-to-r from-green-500 to-orange-500 hover:from-green-600 hover:to-orange-600 text-white hover:shadow-lg hover:shadow-green-200/50 transform hover:scale-105' 
               : 'bg-gray-300 text-gray-500 cursor-not-allowed'
           }`}
         >
